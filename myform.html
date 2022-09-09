@@ -7,32 +7,7 @@
 
     <div data-lightning-out="true"></div>
 
-    <script>
 
-        const appName = 'c:testFormConnector';
-        const componentName = 'c:testform';
-        const lightningEndpoint = 'https://pwc-1fe-dev-ed.my.site.com';
-        const targetElement = document.querySelector("[data-lightning-out]");
-        const componentAttributes = {
-
-        }
-
-        $Lightning.use(
-            appName,
-            function(){
-                $Lightning.createComponent(
-                    componentName,
-                    componentAttributes,
-                    targetElement,
-                    function(cmp){
-                        console.log('lightning component created');
-                    }
-                )
-            },
-            lightningEndpoint
-        );
-
-    </script>
 
 
 </html>
