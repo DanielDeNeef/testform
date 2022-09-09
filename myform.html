@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html>
-    
+        
     update 16:38
-    
+    <script runat=server>
+Platform.Load("core","1");
+HTTPHeader.SetValue("Access-Control-Allow-Methods","POST");
+HTTPHeader.SetValue("Access-Control-Allow-Origin","*");
+</script>
         <script src="https://pwc-1fe-dev-ed.my.site.com/lightning/lightning.out.js"></script>
 
     <div data-lightning-out="true"></div>
-    
+    <script runat=server>
+Platform.Load("core","1");
+HTTPHeader.SetValue("Access-Control-Allow-Methods","POST");
+HTTPHeader.SetValue("Access-Control-Allow-Origin","*");
+</script>
         <script>
+            
+        Access-Control-Allow-Origin = *
 
         const appName = 'c:testFormConnector';
         const componentName = 'c:testform';
@@ -16,6 +26,8 @@
         const componentAttributes = {
 
         }
+        
+        Access-Control-Allow-Origin = *
 
         $Lightning.use(
             appName,
