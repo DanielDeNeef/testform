@@ -8,14 +8,14 @@
 
     <div id="lightningout"></div>
 
-    <script src="https://aofoundation-developer-edition.eu44.force.com/lightning/lightning.out.js"></script>
+    <script src="https://pwc-1fe-dev-ed.my.site.com/lightning/lightning.out.js"></script>
     <script>
       $Lightning.use(
-        'c:LightningOutApp', // name of the Lightning app
+        'c:testFormConnector', // name of the Lightning app
         function () {
           // Callback once framework and app loaded
           $Lightning.createComponent(
-            'c:pocFileUpload', // top-level component of your app
+            'c:testform', // top-level component of your app
             {}, // attributes to set on the component when created
             'lightningout', // the DOM location to insert the component
             function (cmp) {
@@ -23,8 +23,7 @@
             }
           );
         },
-        'https://aofoundation-developer-edition.eu44.force.com/Programmes', // Site endpoint
-         '00D7Q000006FQUK!AQEAQANJx95bTn8iSrtTyJr4REsSX7n2UNLrVf_yf2SOamgQ4qwQ1Fq1f1WWs_s_GRXwBnO1LA.v6eJQE4bxru6m28DdreDy'
+        'https://pwc-1fe-dev-ed.my.site.com/testLightningOut' // Site endpoint        
        
       );
     </script>
