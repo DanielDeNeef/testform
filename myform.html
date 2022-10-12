@@ -1,31 +1,90 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-  </head>
-  <body>
+<html>
+    <head>        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,  initial-scale=1">
+        <script src="https://clubmed2-resourcemanagerplatinum-163d-164037d65ce.cs160.force.com/resource/cxsrec__cxsForm" type="text/javascript"></script>
+         <link rel="stylesheet"
+          href="https://resourcemanagerplatinum-163d-164037d65ce.secure.force.com/resource/cxsrec__cxsFormStyleBasic">   
+        <title>CXSappy Test page</title>                
+    </head>
+    <body>
+        <div id="cxsFormHolder">
+            <script>document.write('<img src="https://AnotherServer.com/img/spinner.gif"/>');</script>
+            <noscript><br/>Javascript is required to show this form, please enable javascript or lower your security settings and try again.</noscript>
+        </div>    
+        
+        <script>         
+            cxsForm.init({
+              target: "#cxsFormHolder",
+                server: "https://clubmed2-resourcemanagerplatinum-163d-164037d65ce.cs160.force.com/",
+                jobId: "a0w0X000004IdSxQAK",
+                lang: "en",
+                formId: "a000X000013b2z0",
+                placeholders: true
+            });
 
-    <div id="lightningout"></div>
-
-    <script src="https://pwc-1fe-dev-ed.my.site.com/lightning/lightning.out.js"></script>
-    <script>
-      $Lightning.use(
-        'c:testFormConnector', // name of the Lightning app
-        function () {
-          // Callback once framework and app loaded
-          $Lightning.createComponent(
-            'c:testform', // top-level component of your app
-            {}, // attributes to set on the component when created
-            'lightningout', // the DOM location to insert the component
-            function (cmp) {
-              // callback when component is created and active on the page
+            function myInit(firstTime) {
+                console.log('init',firstTime);    
             }
-          );
-        },
-        'https://pwc-1fe-dev-ed.my.site.com/testLightningOut' // Site endpoint        
-       
-      );
-    </script>
-  </body>
+
+            function switchLang(newLanguage) {
+                console.log('switching to language:',newLanguage);
+            }
+
+
+            function myFieldValidator(fieldInfo,language) {
+                // example extra date validations on date of birth
+                if(fieldInfo.key == 'cxscandidate__c.date_of_birth__c') {                    
+                    if(fieldInfo.error == false && fieldInfo.value && fieldInfo.value != '') {
+
+                        var isoDate = new Date(fieldInfo.value);
+                                                                        
+                        var currentDate = new Date();
+                        if(isoDate > currentDate ) {
+                            switch(language) {
+                                case 'nl_NL':
+                                case 'nl':     return 'Deze datum ligt in de toekomst.';
+                                default:    return 'This date is in the future.';
+                            }
+                        }
+
+                        var newestDate =  new Date();
+                        newestDate .setYear(newestDate.getFullYear()-18);
+                        if(isoDate > newestDate) {
+                            switch(language) {
+                                case 'nl_NL':
+                                case 'nl':     return 'Deze datum is te recent.';
+                                default:    return 'This date is too recent.';
+                            }
+                        }
+
+                        var oldestDate =  new Date();
+                        oldestDate.setYear(oldestDate.getFullYear()-100);
+                        if(isoDate < oldestDate) {
+                            switch(language) {
+                                case 'nl_NL':
+                                case 'nl':     return 'Deze datum is te ver in het verleden.';
+                                default:    return 'This date is too far in the past.';
+                            }
+                        }
+                    }
+                }
+                return null;
+            }
+
+            function myDoneFunction(isSuccess, results) {
+                console.log('success',isSuccess);
+                console.log('result',results);    
+                if(isSuccess) {
+                    //document.location = 'https://www.google.com';
+                    console.log(' SUCCESS !!!!');
+                }
+            }
+
+            function myFileUpload(status,fieldKey,isTextKernel) {
+                console.log(status,fieldKey,'TK:',isTextKernel);
+            }                
+        </script>
+    </body>
 </html>
