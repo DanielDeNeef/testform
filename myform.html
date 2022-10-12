@@ -23,68 +23,6 @@
                 formId: "a000X000013b2z0",
                 placeholders: true
             });
-
-            function myInit(firstTime) {
-                console.log('init',firstTime);    
-            }
-
-            function switchLang(newLanguage) {
-                console.log('switching to language:',newLanguage);
-            }
-
-
-            function myFieldValidator(fieldInfo,language) {
-                // example extra date validations on date of birth
-                if(fieldInfo.key == 'cxscandidate__c.date_of_birth__c') {                    
-                    if(fieldInfo.error == false && fieldInfo.value && fieldInfo.value != '') {
-
-                        var isoDate = new Date(fieldInfo.value);
-                                                                        
-                        var currentDate = new Date();
-                        if(isoDate > currentDate ) {
-                            switch(language) {
-                                case 'nl_NL':
-                                case 'nl':     return 'Deze datum ligt in de toekomst.';
-                                default:    return 'This date is in the future.';
-                            }
-                        }
-
-                        var newestDate =  new Date();
-                        newestDate .setYear(newestDate.getFullYear()-18);
-                        if(isoDate > newestDate) {
-                            switch(language) {
-                                case 'nl_NL':
-                                case 'nl':     return 'Deze datum is te recent.';
-                                default:    return 'This date is too recent.';
-                            }
-                        }
-
-                        var oldestDate =  new Date();
-                        oldestDate.setYear(oldestDate.getFullYear()-100);
-                        if(isoDate < oldestDate) {
-                            switch(language) {
-                                case 'nl_NL':
-                                case 'nl':     return 'Deze datum is te ver in het verleden.';
-                                default:    return 'This date is too far in the past.';
-                            }
-                        }
-                    }
-                }
-                return null;
-            }
-
-            function myDoneFunction(isSuccess, results) {
-                console.log('success',isSuccess);
-                console.log('result',results);    
-                if(isSuccess) {
-                    //document.location = 'https://www.google.com';
-                    console.log(' SUCCESS !!!!');
-                }
-            }
-
-            function myFileUpload(status,fieldKey,isTextKernel) {
-                console.log(status,fieldKey,'TK:',isTextKernel);
-            }                
         </script>
     </body>
 </html>
